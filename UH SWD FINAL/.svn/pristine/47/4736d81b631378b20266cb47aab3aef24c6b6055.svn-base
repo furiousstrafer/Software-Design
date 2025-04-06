@@ -1,0 +1,66 @@
+Using test first development, write the program for the following word game.
+
+To run the tests, run the build with default settings.
+To run the program, run the build with the run command/task.
+
+The program will read a file with the following words:
+monkey
+fruit
+banana
+apple
+cosmopolitan
+
+The program will pick a random word from the file, scramble it (for example, monkey may be scrambled to oekmny, emknoy, etc.), and present to the user the scrambled word.
+
+Then it will ask the user to guess. The user gets partial points for their guess. They get one point for each vowel and two points for each consonant. For example, if the user enters spines (when the picked word is monkey), then they get 3 points, for n and e. If the picked word contains, for example, one 's', but the user enters a word with two 's', they will get point for only one of the 's'. If a letter they enter is not in the word, they don't get any points for that letter. If the word provided by the user is shorter or longer than the picked word, the user will get one point for the entire word, no error is displayed, however.
+
+The program will present the user with a scrambled word, cycle through asking the user for a guess, print their score, and repeat. It will stop when the user has made the correct guess, that is, entered the original word (monkey, for example).
+
+Scores will be allotted for each part below:
+Build setup properly [10]:
+
+Program works as expected [10]: -5
+> paver run
+Build failed: Unknown task: run
+
+Program deals with user input within stated expectations properly [10]:
+Tests pass [10]:
+
+Test Quality [10]: -1
+  def test_different_length_words(self):
+    self.assertEqual(calculate_score("cat", "cats"), 1)
+    self.assertEqual(calculate_score("cats", "cat"), 1)
+Multiple independent asserts in one test
+
+Code coverage [10]: -5
+src/calculate_score.py      11      0   100%
+src/consoleUI.py            32     32     0%   1-45
+src/file_reader.py          13      9    31%   6-16
+src/process_text.py          2      0   100%
+src/scramble_word.py        10      0   100%
+src/word_selector.py         5      0   100%
+
+Design quality [20]: -10
+Exception: radon found complex code
+
+def main(): - does it all, violates SLAP
+
+Code quality [10]:
+
+Using functional style, immutability, and no recursion [10]: -10
+  while True:
+    guess = input("Guess the word: (or type 'quit' to exit): ").strip().lower()
+
+imperative and mutating instead of functional and non-mutating
+
+More so:
+
+  while result == word:
+    chars = list(word)
+    random.shuffle(chars)
+
+and:
+
+  for letter in guess.lower():
+    if letter in target_word.lower() and letter not in used:
+      score += 1 if letter in vowels else 2

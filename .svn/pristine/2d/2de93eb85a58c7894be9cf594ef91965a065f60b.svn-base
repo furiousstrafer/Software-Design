@@ -1,0 +1,51 @@
+package colorgame;
+
+import java.util.*;
+
+import static colorgame.Color.*;
+import static colorgame.Match.*;
+
+
+public interface MasterMind {
+  static List<Integer> colorMatching(List<Color> actualCombination, List<Color> userCombination){
+    Iterator<Color> selected = actualCombination.iterator();
+    Iterator<Color> user = userCombination.iterator();
+    List<Integer> match = new ArrayList<Integer>();
+
+    while(selected.hasNext()){
+      if(selected.next() == user.next())
+        match.add(1);
+      else
+        match.add(0);
+    }
+    
+    return match;
+  }
+
+  static Map<Match, Integer> guess(List<Color> actualCombination, List<Color> userCombination) {
+    if (actualCombination.equals(userCombination)) {
+      return Map.of(EXACT, 6);
+    }
+
+    var check = colorMatching(actualCombination, userCombination);
+
+    return matchPattern(check);
+  }
+
+  private static Map<Match, Integer> matchPattern(List<Integer> check) {
+    int numOnes = Collections.frequency(check, 1);
+
+    return numOnes > 0
+      ? Map.of(PARTIAL, numOnes)
+      : Map.of(NOMATCH, 0);
+  }
+
+  static List<Color> generateCombination(){
+    var allColors = List.of(GREEN, RED, BLUE, WHITE, ORANGE, PURPLE, CYAN, YELLOW, VIOLET, MOCHA);
+    List<Color> colorCombination = new ArrayList<Color>(allColors);
+
+    Collections.shuffle(colorCombination);
+
+    return colorCombination.subList(0, 6);
+  }
+}

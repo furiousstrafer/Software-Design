@@ -1,0 +1,46 @@
+package colorgame;
+
+import java.util.List;
+import java.util.Map;
+import static colorgame.Match.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public interface MasterMind {
+  static List<Integer> colorMatching(List<Color> actualCombination, List<Color> userCombination){
+    Iterator<Color> selected = actualCombination.iterator();
+    Iterator<Color> user = userCombination.iterator();
+    List<Integer> match = new ArrayList<Integer>();
+
+    while(selected.hasNext()){
+      if(selected.next() == user.next())
+        match.add(1);
+      else
+        match.add(0);
+    }
+    
+    return match;
+  }
+
+  static Map<Match, Integer> guess(List<Color> actualCombination, List<Color> userCombination) {
+    if (actualCombination.equals(userCombination)) {
+      return Map.of(EXACT, 6);
+    }
+
+    var patterns = List.of(
+      List.of(1, 1, 1, 1, 0, 0),
+      List.of(0, 0, 1, 1, 1, 1),
+      List.of(1, 1, 1, 0, 0, 0),
+      List.of(0, 1, 0, 0, 0, 0));
+    var check = colorMatching(actualCombination, userCombination);
+
+    for (int i = 0; i < patterns.size(); i++) {
+      if (patterns.get(i).equals(check)) {
+        return Map.of(PARTIAL, i < 2 ? 4 : i == 2 ? 3 : 1);
+      }
+    }
+
+    return Map.of(NOMATCH, 0);
+    }
+}

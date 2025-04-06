@@ -1,0 +1,26 @@
+package colorgame;
+
+import java.util.*;
+
+import static colorgame.Status.*;
+
+public class Tuple {
+    int attempt;
+    Status status;
+    Map<Match, Integer> responseFromGuess;
+
+    public Tuple(int _attempt, Status _status, Map<Match, Integer> response){
+        attempt = _attempt;
+        status = _status;
+        responseFromGuess = response;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Tuple t = (Tuple)obj;
+        
+        return attempt == t.attempt
+            && status.equals(t.status)
+            && responseFromGuess.equals(t.responseFromGuess);
+    }
+}

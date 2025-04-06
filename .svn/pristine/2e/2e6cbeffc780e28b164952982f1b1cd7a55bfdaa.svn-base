@@ -1,0 +1,24 @@
+package colorGame;
+
+import java.util.List;
+import colorgame.Colors;
+import colorgame.Match;
+
+public interface MasterMind {
+
+     static List<colorgame.Match> guess(List<Colors> selectedColors, List<Colors> userProvidedColors) {
+        if (selectedColors.equals(userProvidedColors)) {
+            return List.of(Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT);
+        }
+
+        return List.of(Match.WRONG, Match.WRONG, Match.WRONG, Match.WRONG, Match.WRONG, Match.WRONG);
+    }
+
+    List<String> makeGuess(List<String> guess);
+
+    boolean isGameOver();
+
+    void giveUp();
+
+    List<Colors> returnSelectedColors();
+}

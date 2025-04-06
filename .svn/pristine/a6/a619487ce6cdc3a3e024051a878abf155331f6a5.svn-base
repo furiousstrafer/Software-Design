@@ -1,0 +1,30 @@
+package colorgame;
+
+import java.util.*;
+import static colorgame.Status.*;
+import static colorgame.Match.*;
+
+public class Game implements MasterMind {
+  int attempt = 1;
+  
+  public Game(int _attempt){
+    attempt = _attempt;
+  }
+  
+  public Tuple play(List<Color> selectedColors, List<Color> userColors) {
+    var response = MasterMind.guess(selectedColors, userColors);
+
+    Status status;
+
+    if (response.get(EXACT) == selectedColors.size()) {
+      status = WON;
+    } else if (attempt >= 20) {
+      status = LOST;
+    } else {
+      attempt++;
+      status = IN_PROGRESS;
+    }
+
+    return new Tuple(attempt, status, response);
+  }
+}

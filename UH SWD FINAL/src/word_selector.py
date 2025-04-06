@@ -1,0 +1,6 @@
+import random
+
+def select_word(words):
+  if not words:
+    return ""
+  return random.choice(words)

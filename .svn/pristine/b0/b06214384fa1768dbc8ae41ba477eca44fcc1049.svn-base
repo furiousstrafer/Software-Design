@@ -1,0 +1,37 @@
+package colorgame;
+
+import org.junit.jupiter.api.Test;
+import java.util.*;
+import static colorgame.Color.*;
+import static colorgame.Match.*;
+import static colorgame.Status.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class GameTest {
+
+  @Test
+  void playForFirstAttemptWithExactMatch() {
+    var selectedColors = List.of(RED, BLUE, GREEN, YELLOW, ORANGE, PURPLE);
+    var userColors = List.of(RED, BLUE, GREEN, YELLOW, ORANGE, PURPLE);
+    int maxAttempts = 20;
+
+    Tuple result = Game.play(selectedColors, userColors, maxAttempts);
+
+    assertEquals(1, result.getAttempt());
+    assertEquals(WON, result.getStatus());
+    assertEquals(Map.of(EXACT, 6, PARTIAL, 0, NOMATCH, 0), result.getResponseFromGuess());
+  }
+
+  @Test
+  void playForFirstAttemptWithNoMatch() {
+    var selectedColors = List.of(RED, BLUE, GREEN, YELLOW, ORANGE, PURPLE);
+    var userColors = List.of(WHITE, CYAN, VIOLET, MOCHA, WHITE, CYAN);
+    int maxAttempts = 20;
+
+    Tuple result = Game.play(selectedColors, userColors, maxAttempts);
+
+    assertEquals(1, result.getAttempt());
+    assertEquals(IN_PROGRESS, result.getStatus());
+    assertEquals(Map.of(EXACT, 0, PARTIAL, 0, NOMATCH, 6), result.getResponseFromGuess());
+  }
+}

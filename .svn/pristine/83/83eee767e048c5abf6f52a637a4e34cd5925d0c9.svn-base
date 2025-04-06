@@ -1,0 +1,37 @@
+package colorgame;
+
+import static colorgame.Color.*;
+import static colorgame.Match.*;
+import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class MasterMindTest {
+    @Test
+    void canary() {
+        assertTrue(true);
+    }
+
+    @Test
+    void guessWithAllColorsMatchInPosition() {
+        var selectedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE); //Feedback: var selectedColors =
+        var userDefinedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);  //Feedback: var userDefinedColors = selectedColors;
+
+        var response = MasterMind.guess(selectedColors, userDefinedColors); //Feedback: var response =
+
+
+    }
+    //Feedback: we can do static import of Match.* and then use EXACT instead of Match.EXACT
+
+    @Test
+    void guessWithAllColorsDoNotMatchInPosition(){
+        List<Color> selectedColors = List.of(MOCHA, WHITE, VIOLET, YELLOW, BLUE, PURPLE);
+        List<Color> userDefinedColors = List.of(PURPLE, YELLOW, RED, GREEN, CYAN, WHITE);
+        
+        List<Match> response = MasterMind.guess(selectedColors, userDefinedColors);
+
+        assertEquals(Map.of(NOMATCH, 6), response);
+    }
+}

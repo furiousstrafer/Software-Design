@@ -1,0 +1,15 @@
+package colorgame;
+
+import java.util.List;
+import java.util.Map;
+import static colorgame.Match.*;
+
+public interface MasterMind {
+  static Map<Match, Integer> guess(List<Color> selectedColors, List<Color> userDefinedColors) {
+    if (selectedColors.equals(userDefinedColors)) {
+      return Map.of(EXACT, 6);
+    }
+
+    return Map.of(NOMATCH, 6);
+    }
+}

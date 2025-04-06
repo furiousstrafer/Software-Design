@@ -1,0 +1,40 @@
+Assign1: Due 11:59PM CT September 27 [Extended 11:59PM CT October 4]
+
+***Please review the top part of ../hw1/hw1.txt***
+***Your chance of success greatly increases if you start very early. Your chance of failure increases if you start late. Please use as many reviews as you possibly can.***
+
+Using Test First Development (no code without test first) let's implement the problem designed in hw2. 
+Feel free to evolve that design and use judgment to make changes based on the improved understanding and learning. 
+You are not required to use any of the design idea or languages you mentioned in hw2, apply decisions based on your renewed learnings.
+
+Please take small steps and ask for frequent reviews.
+
+First start with a tests list (tests.txt) and a canary test. Implement at most two more tests and minimum code to make those tests to pass. 
+This is a great first step to complete and ask for a review.
+
+After completing the assignment (and only after) let's answer the following questions:
+
+1. What did you learn mainly in this assignment?
+
+We learned how writing tests firsts slowly creates the final product (the Game) instead of creating the code first and testing after. In the beginning the tests we made led us to create more tests and refactor code accordingly.
+
+We also learned how to keep code coverage as close to 100% all the time and the importance of it. If some code isn't tested then that could cause problems for code that is being tested. Some tests would fail because the code being tested relied on untested code.
+
+Finally, the most important thing we learned is to keep code simple and write what is needed. In the beginning, the methods in the MasterMind class were complex, but they worked at the time. However, later on it became difficult to write methods from other classes since those depended on methods from the MasterMind class, so we had to simplify the MasterMind class to one short method.
+
+2. How is the current design different, if at all, from the strategic design created in hw2?
+
+The design my previous pair made only had two classes: the User class where a user can input their guess or give up. Also, a GameMaster class where it generates a color combination, compare the User's guess and the color combination and track the User tries. The final product had more classes than the original strategic design
+
+First we separated the previous GameMaster class to three separate classes: MasterMind, Game, and GameController. This helped make cohesion high.
+
+Second we added enums Match, Status and Color which wasn't in the original design.
+
+3. Were there any surprises or things you did not expect along the way? Any particular problem faced, things you had to tackle that you did not expect beforehand?
+
+We were surprised with just how much time was both saved and lost using Test Driven Development. The incremental nature of Test Driven Development breaks down the problem into many manageable pieces which overall helps with completing tasks by working on the program step by step rather than jumping into the programming all at once. 
+
+One problem that this approach caused was that finding the balance between writing meaningful tests and writing tests that would inevitably become a waste of time. We did not expect just how time consuming writing tests could be as refactoring code sometimes caused test cases to fail. 
+
+One more challenge we faced was the learning curve to Test Driven Development. The habit of jumping straight into programming was no longer able to be applied. It required a shift in both mindset and workflow which stumped the initial productivity as learning how test driven development should be done was the first step.
+

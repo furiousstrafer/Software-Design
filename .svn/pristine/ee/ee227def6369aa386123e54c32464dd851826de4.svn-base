@@ -1,0 +1,28 @@
+package colorgame;
+
+import java.util.*;
+import static colorgame.Status.*;
+
+public class Tuple {
+    private final int attempt;
+    private final Status status;
+    private final Map<Match, Integer> responseFromGuess;
+
+    public Tuple(int _attempt, Status _status, Map<Match, Integer> response){
+        attempt = _attempt;
+        status = _status;
+        responseFromGuess = response;
+    }
+
+    public int getAttempt() {
+        return attempt;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Map<Match, Integer> getResponseFromGuess() {
+        return responseFromGuess;
+    }
+}

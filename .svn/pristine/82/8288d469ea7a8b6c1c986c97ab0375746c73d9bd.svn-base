@@ -1,0 +1,26 @@
+package colorgame;
+
+import static colorgame.Color.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class MasterMindTest {
+    @Test
+    void canary() {
+        assertTrue(true);
+    }
+
+    //guess with all color match in position
+    @Test
+    void guessWithAllColorsMatchInPosition() {
+        List<Color> selectedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);
+        List<Color> userDefinedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);
+
+        List<Match> response = MasterMind.guess(selectedColors, userDefinedColors);
+        System.out.println(response);
+
+        assertEquals(List.of(Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT), response);
+    }
+}

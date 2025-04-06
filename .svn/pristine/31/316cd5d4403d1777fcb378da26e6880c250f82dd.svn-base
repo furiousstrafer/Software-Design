@@ -1,0 +1,13 @@
+package colorgame;
+
+import java.util.List;
+
+
+public interface MasterMind {
+    static List<Match> guess(List<Color> selectedColors, List<Color> userDefinedColors) { //Feedback: please use 2-space indentations
+        if (selectedColors.equals(userDefinedColors)) {
+            return List.of(Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT);
+        } //Feedback: a blank line after this line, please
+        return List.of(Match.NOMATCH, Match.NOMATCH, Match.NOMATCH, Match.NOMATCH, Match.NOMATCH, Match.NOMATCH);
+    }
+}

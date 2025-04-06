@@ -1,0 +1,37 @@
+package colorgame;
+
+import java.util.*;
+
+import static colorgame.Color.*;
+import static colorgame.Match.*;
+
+public interface MasterMind {
+
+  static Map<Match, Integer> guess(List<Color> actualCombination, List<Color> userCombination) {
+    int exactMatch = 0;
+
+    Map<Color, Integer> actualMap = new HashMap<>();
+    Map<Color, Integer> userMap = new HashMap<>();
+
+    for (int i = 0; i < actualCombination.size(); i++) {
+      if (actualCombination.get(i) == userCombination.get(i)) {
+        exactMatch++;
+      } else {
+        actualMap.put(actualCombination.get(i), actualMap.getOrDefault(actualCombination.get(i), 0) + 1);
+        userMap.put(userCombination.get(i), userMap.getOrDefault(userCombination.get(i), 0) + 1);
+      }
+    }
+
+    int partialMatch = 0;
+
+    for (Color color : actualMap.keySet()) {
+      partialMatch += Math.min(actualMap.get(color), userMap.getOrDefault(color, 0));
+    }
+
+    return Map.of(
+            EXACT, exactMatch,
+            PARTIAL, partialMatch,
+            NOMATCH, actualCombination.size() - exactMatch - partialMatch
+    );
+  }
+}

@@ -1,0 +1,80 @@
+package colorgame;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.*;
+import static colorgame.Color.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class GameControllerTest {
+  private Game game;
+  private GameController gameController;
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private final PrintStream originalOut = System.out;
+
+  @BeforeEach
+  void setUp() {
+    game = new Game(1);
+    System.setOut(new PrintStream(outContent));
+  }
+
+  @AfterEach
+  void tearDown() {
+    System.setOut(originalOut);
+  }
+
+  @Test
+  void testCorrectGuessFirstAttempt() {
+    List<Color> selectedColors = Arrays.asList(RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE);
+    String input = "RED GREEN BLUE YELLOW ORANGE PURPLE\n";
+    Scanner scanner = new Scanner(input);
+
+    gameController = new GameController(game, 20, selectedColors, scanner);
+
+    gameController.playGame();
+
+    String output = outContent.toString();
+    assertTrue(output.contains("You've guessed the correct colors!") &&
+            output.contains("Attempt 1:") &&
+            output.contains("Exact matches: 6"));
+  }
+
+  @Test
+  void testIncorrectGuessesUntilLoss() {
+    List<Color> selectedColors = Arrays.asList(RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE);
+    String input = "WHITE CYAN VIOLET MOCHA RED GREEN\nWHITE CYAN VIOLET MOCHA RED GREEN\n";
+    Scanner scanner = new Scanner(input);
+
+    gameController = new GameController(game, 2, selectedColors, scanner);
+
+    gameController.playGame();
+
+    String output = outContent.toString();
+
+    assertTrue(
+            output.contains("Game over. No more attempts.") &&
+                    output.contains("Attempt 2:") &&
+                    output.contains("Exact matches: 0") &&
+                    output.contains("Partial matches: 2") &&
+                    output.contains("No matches: 4")
+    );
+  }
+
+  @Test
+  void testInvalidColorInput() {
+    List<Color> selectedColors = Arrays.asList(RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE);
+    String input = "RED GREEN BLUE YELLOW ORANGE INVALID\nRED GREEN BLUE YELLOW ORANGE PURPLE\n";
+    Scanner scanner = new Scanner(input);
+
+    gameController = new GameController(game, 20, selectedColors, scanner);
+
+    gameController.playGame();
+
+    String output = outContent.toString();
+    assertTrue(output.contains("Invalid color: INVALID. Please try again.") &&
+            output.contains("You've guessed the correct colors!"));
+  }
+}

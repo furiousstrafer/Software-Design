@@ -1,0 +1,45 @@
+package colorgame;
+
+import java.util.*;
+import static colorgame.Status.*;
+import static colorgame.Match.*;
+
+public class Game implements MasterMind {
+  int attempt = 1;
+
+  public Game(int _attempt){
+    attempt = _attempt;
+  }
+
+  public Tuple play(List<Color> selectedColors, List<Color> userColors, int maxAttempts) {
+    var response = MasterMind.guess(selectedColors, userColors);
+
+    Status status;
+
+    if (response.get(EXACT) == selectedColors.size()) {
+      status = WON;
+    } else if (attempt >= maxAttempts) {
+      status = LOST;
+    } else {
+      attempt++;
+      status = IN_PROGRESS;
+    }
+
+    return new Tuple(attempt, status, response);
+  }
+
+  public static void main(String[] args) {
+    Game game = new Game(1);
+    var selectedColors = generateRandomColors();
+    Scanner scanner = new Scanner(System.in);
+    GameController gameController = new GameController(game, 5, selectedColors, scanner);
+    gameController.playGame();
+    scanner.close();
+  }
+
+  private static List<Color> generateRandomColors() {
+    var allColors = new ArrayList<>(Arrays.asList(Color.values()));
+    Collections.shuffle(allColors);
+    return allColors.subList(0, 6);
+  }
+}

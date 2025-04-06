@@ -1,0 +1,85 @@
+[Reviewed 09/30/24 06:52 AM MDT]
+synopsis: no response to peer evaluation yet
+
+details:
+
+Have not received response to the following from: Annor Luu
+https://groups.google.com/g/uhcsf24sd/c/4xWd2iDjgHA/m/H284SCutBQAJ
+
+Please fill the survey before asking for review.
+
+Also, please take a look at the code coverage and make sure the coverage shows 100%. After fixing the coverage (or ask for help if you need), please ask for review.
+
+------------------------------------------------------------------------------
+[Reviewed 09/27/24 05:12 AM MDT]
+synopsis~: let's rework the tests
+
+details:
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 09/24/24 20:20 PM CDT]
+synopsis~:  feedback notes from previous review still in files
+
+details: 
+
+Feedback from previous review are still in the files. Please address, remove those feedback notes from the files. After that, please update the reviews request file for a quick review.
+
+------------------------------------------------------------------------------
+[Reviewed 09/24/24 06:08 AM CDT]
+synopsis~:  feedback notes from previous review still in files
+
+details: 
+
+Feedback from previous review are still in the files. Please address, remove those feedback notes from the files. After that, please update the reviews request file for a quick review.
+
+Also, missing assign1.txt file.
+
+------------------------------------------------------------------------------
+[Reviewed 09/23/24 22:04 PM CDT]
+synopsis: let's refactor and move forward
+
+details:
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 09/23/24 05:41 AM MDT]
+synopsis~: red or yellow in code coverage
+
+details:
+
+Please take a look at the code coverage and make sure the coverage shows 100%.
+After fixing the coverage (or ask for help if you need), please ask for review.
+
+------------------------------------------------------------------------------
+[Reviewed 09/14/24 05:44 AM CDT]
+synopsis: let's start with a few tests
+
+**This is from the previous repository, copied here for your convenience**
+
+details:
+
+Let's write one or two tests after the canary test and minimum code for those tests to pass.
+
+A CI build has been setup for your project.
+You can see files related to this under assign1.
+
+How does this work?
+When you check in code, the CI build machine wakes up, fetches the latest 
+version of your code, and runs the file build.sh that is under your repository (above assign1). That file in turn runs the build scripts in your assign1 directory.
+
+In case you missed it, please read:
+<https://groups.google.com/g/uhcsf24sd/c/UtlbmTRtJAA/m/8BMXBo0JAQAJ>
+
+Also, please keep an eye on code coverage. To view the code coverage, please 
+run the build using the following command (do not click or double click, 
+instead open the command prompt, cd to your assign1 directory, and then run 
+from there).
+
+gradlew
+Then take a look at the file (using a browser):
+build/reports/jacoco/test/html/index.html
+
+------------------------------------------------------------------------------

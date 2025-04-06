@@ -1,0 +1,73 @@
+package colorgame;
+
+import static colorgame.Color.*;
+import static colorgame.Match.*;
+import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class MasterMindTest {
+    @Test
+    void canary() {
+        assertTrue(true);
+    }
+
+    @Test
+    void guessWithAllColorsMatchInPosition() {
+        var selectedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);
+        var userDefinedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);
+
+        var response = MasterMind.guess(selectedColors, userDefinedColors);
+
+        assertEquals(Map.of(EXACT, 6), response);
+    }
+
+    @Test
+    void guessWithAllColorsDoNotMatchInPosition(){
+        var selectedColors = List.of(MOCHA, WHITE, VIOLET, YELLOW, BLUE, PURPLE);
+        var userDefinedColors = List.of(PURPLE, YELLOW, RED, GREEN, CYAN, WHITE);
+        
+        var response = MasterMind.guess(selectedColors, userDefinedColors);
+
+        assertEquals(Map.of(NOMATCH, 0), response);
+        
+    }
+
+    @Test
+    void guessWithFirstFourColorsMatchPosistion(){
+        var selectedColors = List.of(RED, GREEN, BLUE, WHITE, YELLOW, CYAN);
+        var userDefinedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);
+
+        var response = MasterMind.guess(selectedColors, userDefinedColors);
+        assertEquals(Map.of(PARTIAL, 4), response);
+    }
+
+    @Test
+    void guesWithLastFourColorsMatchPosition(){
+        var selectedColors = List.of(MOCHA, CYAN, BLUE, WHITE, ORANGE, PURPLE);
+        var userDefinedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);
+
+        var response = MasterMind.guess(selectedColors, userDefinedColors);
+        assertEquals(Map.of(PARTIAL, 4), response);
+    }
+
+    @Test
+    void guessWithFirstThreeColorsInPosition(){
+        var selectedColors = List.of(RED, GREEN, BLUE, YELLOW, PURPLE, ORANGE);
+        var userDefinedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);
+
+        var response = MasterMind.guess(selectedColors, userDefinedColors);
+        assertEquals(Map.of(PARTIAL, 3), response);
+    }
+
+    @Test
+    void guessWithOnlySecondInPosistion(){
+        var selectedColors = List.of(RED, GREEN, BLUE, YELLOW, PURPLE, ORANGE);
+        var userDefinedColors = List.of(CYAN, GREEN, YELLOW, WHITE, ORANGE, PURPLE);
+
+        var response = MasterMind.guess(selectedColors, userDefinedColors);
+        assertEquals(Map.of(PARTIAL, 1), response);
+    }
+}

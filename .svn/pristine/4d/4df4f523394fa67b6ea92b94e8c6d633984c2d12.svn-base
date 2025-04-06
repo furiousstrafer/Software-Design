@@ -1,0 +1,7 @@
+package colorgame;
+
+public enum Match {
+    EXACT, //Feedback: please use 2-space indentations
+    PARTIAL,
+    NOMATCH
+}

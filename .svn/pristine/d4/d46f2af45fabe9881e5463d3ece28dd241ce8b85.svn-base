@@ -1,0 +1,54 @@
+package colorGame;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import colorgame.Colors;
+
+public class MasterMindImplementation implements MasterMind {
+    private List<Colors> selectedColors;
+    private boolean gameOver;
+
+    public MasterMindImplementation() {
+        // Randomly select 6 unique colors from the Colors enum
+        List<Colors> allColors = new ArrayList<>(Arrays.asList(Colors.values()));
+        Collections.shuffle(allColors);
+        selectedColors = allColors.subList(0, 6);
+        gameOver = false;
+    }
+
+    @Override
+    public List<String> makeGuess(List<String> guess) {
+        List<String> feedback = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            feedback.add("WHITE");
+        }
+        return feedback;
+    }
+
+    @Override
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    @Override
+    public void giveUp() {
+        gameOver = true;
+    }
+
+    @Override
+    public List<Colors> returnSelectedColors() {
+        return selectedColors;
+    }
+
+    public static void main(String[] args) {
+        MasterMind game = new MasterMindImplementation();
+        System.out.println("New game created. Is game over? " + game.isGameOver());
+        //test print of randomly selected colors
+        System.out.println("Selected colors: " + game.returnSelectedColors());
+    }
+}
+
+//Feedback: exactly one blank line at the bottom of each file, please

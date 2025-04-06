@@ -1,0 +1,29 @@
+import unittest
+from src.calculate_score import calculate_score
+
+
+class TestCalculateScore(unittest.TestCase):
+  def test_empty_strings(self):
+    self.assertEqual(calculate_score("", ""), 0)
+
+  def test_no_matches(self):
+    self.assertEqual(calculate_score("cat", "dog"), 0)
+
+  def test_different_length_words(self):
+    self.assertEqual(calculate_score("cat", "cats"), 1)
+    self.assertEqual(calculate_score("cats", "cat"), 1)
+
+  def test_one_matching_vowel(self):
+    self.assertEqual(calculate_score("cat", "bat"), 3)
+
+  def test_one_matching_consonant(self):
+    self.assertEqual(calculate_score("cat", "hit"), 2)
+
+  def test_multiple_matches(self):
+    self.assertEqual(calculate_score("cat", "rat"), 3)
+
+  def test_user_input_spines_when_word_is_monkey(self):
+    self.assertEqual(calculate_score("spines", "monkey"), 3)
+
+if __name__ == '__main__':
+  unittest.main()

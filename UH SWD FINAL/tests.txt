@@ -1,0 +1,31 @@
+x canary
+x process empty text
+x process "monkey" and return "monkey"
+
+x scramble empty text and return empty text
+x scramble single letter and return the same letter
+x scramble two letters and return true if scrambled
+x scramble three letters and return true if scrambled
+x scramble "monkey" and return true if scrambled
+
+x calculate score for empty text and return 0
+x calculate score for no matching letters and return 0
+x calculate score with wrong length words and return 1
+x calculate score for matching single vowel and return 1
+x calculate score for matching single consonant and return 2
+x calculate score for matching one vowel and one consonant and return 3
+x calculate score for user input "spines" when picked word is "monkey" and return 3
+
+x read words from file and return true if read properly
+
+x select word from empty list and return empty string
+x select word from single word list and return that word
+x select word from multiple word list and return one of the words
+
+x move on to console UI
+x read and store file path from console input
+x create exceptions for invalid file path
+x select word and scramble it to user
+x ask user for input and calculate score
+x display score to user
+x repeat until user guesses the word

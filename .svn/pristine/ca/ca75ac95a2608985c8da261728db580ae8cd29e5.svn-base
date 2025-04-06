@@ -1,0 +1,40 @@
+package colorgame;
+
+import static colorgame.Color.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class MasterMindTest {
+    @Test
+    void canary() {
+        assertTrue(true);
+    }
+
+    //guess with all color match in position //Feedback: please remove this line
+    @Test
+    void guessWithAllColorsMatchInPosition() {
+        List<Color> selectedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE); //Feedback: var selectedColors = 
+        List<Color> userDefinedColors = List.of(RED, GREEN, BLUE, WHITE, ORANGE, PURPLE);  //Feedback: var userDefinedColors = selectedColors;
+
+        List<Match> response = MasterMind.guess(selectedColors, userDefinedColors); //Feedback: var response = 
+        System.out.println(response); //Feedback: we don't do such things, please remove this line
+
+        assertEquals(List.of(Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT, Match.EXACT), response); //Feedback: instead of this, how about
+        //assertEquals(Map.of(EXACT, 6), response);
+    }
+    //Feedback: we can do static import of Match.* and then use EXACT instead of Match.EXACT
+
+    //guess when all colors don't match in position //Feedback: please remove this line.
+    @Test
+    void guessWithAllColorsDoNotMatchInPosition(){
+        List<Color> selectedColors = List.of(MOCHA, WHITE, VIOLET, YELLOW, BLUE, PURPLE);
+        List<Color> userDefinedColors = List.of(PURPLE, YELLOW, RED, GREEN, CYAN, WHITE);
+        
+        List<Match> response = MasterMind.guess(selectedColors, userDefinedColors);
+        System.out.println(response);
+
+        assertEquals(List.of(Match.NOMATCH, Match.NOMATCH, Match.NOMATCH, Match.NOMATCH, Match.NOMATCH, Match.NOMATCH), response);
+    }
+}

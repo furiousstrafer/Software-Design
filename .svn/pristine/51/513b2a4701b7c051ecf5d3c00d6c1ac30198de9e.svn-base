@@ -1,0 +1,16 @@
+x canary
+x guess with all colors match in position
+x guess with all colors mismatch
+
+x guess with all colors match out of position 
+x guess with first four colors match in position 
+x guess with last four colors match in position
+x guess with first three colors match in position and the last three match out of position
+x guess with first and third color mismatch, second in position, and the others match out of position
+
+#Feedback: We have designed the guess function. Now let's think of a few tests to take us forward to the next step.
+
+#Feedback: we will design a play function that will take selected colors, user provided colors, and a number_of_attempts. It will return the response from guess, the number of attempts so far, and a status of WON, IN_PROGRESS, or LOST. We will design this function, of course, incrementally using tests.
+
+x play for the 1st attempt with exact match
+x play for the 1st attempt with no match

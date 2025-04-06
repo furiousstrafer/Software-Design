@@ -1,0 +1,14 @@
+package colorgame;
+
+public enum Color {
+    GREEN, //Feedback: please use 2-space indentations
+    RED,
+    BLUE,
+    WHITE,
+    ORANGE,
+    PURPLE,
+    CYAN,
+    YELLOW,
+    VIOLET,
+    MOCHA;
+}

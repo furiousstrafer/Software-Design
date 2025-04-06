@@ -1,0 +1,28 @@
+Using test first development, write the program for the following word game.
+
+To run the tests, run the build with default settings.
+To run the program, run the build with the run command/task.
+
+The program will read a file with the following words:
+monkey
+fruit
+banana
+apple
+cosmopolitan
+
+The program will pick a random word from the file, scramble it (for example, monkey may be scrambled to oekmny, emknoy, etc.), and present to the user the scrambled word.
+
+Then it will ask the user to guess. The user gets partial points for their guess. They get one point for each vowel and two points for each consonant. For example, if the user enters spines (when the picked word is monkey), then they get 3 points, for n and e. If the picked word contains, for example, one 's', but the user enters a word with two 's', they will get point for only one of the 's'. If a letter they enter is not in the word, they don't get any points for that letter. If the word provided by the user is shorter or longer than the picked word, the user will get one point for the entire word, no error is displayed, however.
+
+The program will present the user with a scrambled word, cycle through asking the user for a guess, print their score, and repeat. It will stop when the user has made the correct guess, that is, entered the original word (monkey, for example).
+
+Scores will be allotted for each part below:
+Build setup properly [10]:
+Program works as expected [10]:
+Program deals with user input within stated expectations properly [10]:
+Tests pass [10]:
+Test Quality [10]:
+Code coverage [10]:
+Design quality [20]:
+Code quality [10]:
+Using functional style, immutability, and no recursion [10]:

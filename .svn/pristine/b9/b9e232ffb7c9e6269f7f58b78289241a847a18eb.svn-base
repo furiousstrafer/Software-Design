@@ -1,0 +1,16 @@
+package colorgame;
+
+
+import static colorgame.Match.*;
+import static colorgame.Colors.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class MasterMindTest {
+    @Test
+    void canary() {
+        assertTrue(true);
+    }
+}

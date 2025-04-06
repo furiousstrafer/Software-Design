@@ -1,0 +1,36 @@
+def calculate_score(guess, target_word):
+  """
+  Calculate score based on matching letters regardless of position:
+  - Different length words return 1 point
+  - Vowels are worth 1 point
+  - Consonants are worth 2 points
+  - Letters can match in any position
+  """
+  # Handle empty strings
+  if len(guess) == 0 and len(target_word) == 0:
+    return 0
+
+  # Handle different length words
+  if len(guess) != len(target_word):
+    return 1
+
+  vowels = set('aeiou')
+  score = 0
+
+  # Convert both to lowercase for comparison
+  guess = guess.lower()
+  target_word = target_word.lower()
+
+  # Track used letters to avoid counting duplicates
+  used_letters = set()
+
+  # Check each letter in guess
+  for letter in guess:
+    if letter in target_word and letter not in used_letters:
+      if letter in vowels:
+        score += 1
+      else:
+        score += 2
+      used_letters.add(letter)
+
+  return score

@@ -1,0 +1,15 @@
+package colorgame;
+
+public enum Color {
+  GREEN,
+  RED,
+  BLUE,
+  WHITE,
+  ORANGE,
+  PURPLE,
+  CYAN,
+  YELLOW,
+  VIOLET,
+  MOCHA;
+}
+//Feedback: exactly one blank line at the bottom of each file, please

@@ -1,0 +1,24 @@
+def calculate_score(guess, target_word):
+  if len(guess) == 0 and len(target_word) == 0:
+    return 0
+
+  if len(guess) != len(target_word):
+    return 1
+
+  vowels = set('aeiou')
+  score = 0
+
+  guess = guess.lower()
+  target_word = target_word.lower()
+
+  used_letters = set()
+
+  for letter in guess:
+    if letter in target_word and letter not in used_letters:
+      if letter in vowels:
+        score += 1
+      else:
+        score += 2
+      used_letters.add(letter)
+
+  return score

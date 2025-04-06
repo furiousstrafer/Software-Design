@@ -1,0 +1,49 @@
+package colorgame;
+
+import java.util.List;
+import java.util.Map;
+import static colorgame.Match.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public interface MasterMind {
+  static List<Integer> colorMatching(List<Color> actualCombination, List<Color> userCombination){
+    Iterator selected = actualCombination.iterator();
+    Iterator user = userCombination.iterator();
+    List<Integer> match = new ArrayList<Integer>();
+
+    while(selected.hasNext()){
+      if(selected.next() == user.next())
+        match.add(1);
+      else
+        match.add(0);
+    }
+    
+    return match;
+  }
+
+  static Map<Match, Integer> guess(List<Color> actualCombination, List<Color> userCombination) {
+    if (actualCombination.equals(userCombination)) {
+      return Map.of(EXACT, 6);
+    }
+
+    var firstFourMatch =  List.of(1, 1, 1, 1, 0, 0);
+    var lastFourMatch =  List.of(0, 0, 1, 1, 1, 1);
+    var firstThreeMatch = List.of(1, 1, 1, 0, 0, 0);
+    var onlySecondInPosition = List.of(0, 1, 0, 0, 0, 0);
+    var check = colorMatching(actualCombination, userCombination);
+    
+    if(firstFourMatch.equals(check))
+      return Map.of(PARTIAL, 4);
+    else if(lastFourMatch.equals(check))
+      return Map.of(PARTIAL, 4);
+    else if(firstThreeMatch.equals(check))
+      return Map.of(PARTIAL, 3);
+    else if (onlySecondInPosition.equals(check))
+      return Map.of(PARTIAL, 1);
+
+      return Map.of(NOMATCH, 0);
+    }
+
+}
